@@ -1,0 +1,162 @@
+body {
+    background: #0e1a2a;
+    color: #c4c7bb;
+    font-family: "Assistant", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    width: 100vw;
+    padding: 0;
+    scroll-snap-type: both mandatory;
+}
+
+.section {
+    height: 95vh;
+    width: 100vw;
+    scroll-snap-align: start;
+}
+
+.fs-1{
+    font-size: 1rem !important;
+}
+.fs-15{
+    font-size: 1.5rem !important;
+}
+.fs-2{
+    font-size: 2rem !important;
+}
+
+.row {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.hashtag {
+    font-size: 2rem !important;
+    font-weight: bold;
+    margin-top: 10%;
+}
+
+.hashtag-caption {
+    font-size: 1.3rem !important;
+}
+
+.hashtag-sub {
+    font-size: 1.5rem !important;
+    font-weight: 200px;
+}
+
+.countdown-container.row>.col-md-3 {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.countdown-container span {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.countdown-container.row>*,
+.rem>* {
+    padding-left: 0 !important;
+}
+
+.big-text {
+    margin: 1rem 0;
+    font-size: 3rem;
+    font-weight: bolder;
+    /* padding: 5px; */
+}
+
+.fp-ls {
+    animation: slideInLeft 1s ease-out;
+}
+
+.fp-rs {
+    animation: slideInRight 1s ease-out;
+}
+
+.propose-img>img {
+    max-width: 90%;
+    max-height: 85vh;
+    aspect-ratio: 1;
+}
+
+#scrollDownBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    bottom: 10px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+
+}
+
+.img2{
+    height: 1px;
+}
+.img2>img{
+    margin-left: 10px;
+    width: 90vw;
+    opacity: 0.3;
+}
+/* second section */
+
+@media only screen and (max-width: 767px) {
+    body {
+        width: 80vw;
+    }
+
+    #scrollDownBtn {
+        margin-top: 10px;
+    }
+
+    .fs>.fp-ls {
+        height: 40vh;
+    }
+
+    .fs>.fp-rs {
+        height: 40vh;
+        z-index: -1;
+        opacity: 0.2;
+    }
+
+    .fs>.rem {
+        height: 20vh;
+    }
+
+    .ss>.map {
+        max-width: 100%;
+    }
+
+    .ss>.map>iframe {
+        width: 100%;
+        height: 50vh;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        /* Adjust the initial position based on your design */
+    }
+
+    to {
+        transform: translateX(0);
+        /* Adjust the final position based on your design */
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        /* Adjust the initial position based on your design */
+    }
+
+    to {
+        transform: translateX(0);
+        /* Adjust the final position based on your design */
+    }
+}
