@@ -6,13 +6,22 @@ body {
     font-style: normal;
     width: 100vw;
     padding: 0;
-    scroll-snap-type: both mandatory;
+    /* scroll-snap-type: both mandatory; */
 }
 
 .section {
     height: 95vh;
     width: 100vw;
-    scroll-snap-align: start;
+    /* scroll-snap-align: start; */
+}
+
+.hashtag>a{
+    text-decoration: none;
+    color: #c4c7bb;
+}
+.family-data{
+    font-size: 1.3rem;
+    margin-top: 10px;
 }
 
 .fs-1{
@@ -24,6 +33,18 @@ body {
 .fs-2{
     font-size: 2rem !important;
 }
+
+.fwb{
+    font-weight: bold;
+}
+.fwber{
+    font-weight: bolder;
+}
+.cherish-img>img{
+    width: 70vw;
+    border-radius: 50%;
+}
+
 
 .row {
     margin-right: 0px !important;
