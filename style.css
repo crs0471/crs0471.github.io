@@ -19,9 +19,19 @@ body {
     text-decoration: none;
     color: #c4c7bb;
 }
+.table-cont{
+    height: 0vh;
+    height: 30vh;
+    overflow-y: visible;
+    border-top: 2px solid gray;
+}
+
 .family-data{
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-top: 10px;
+    overflow-y: scroll;
+    margin-left: 15px;
+    
 }
 
 .fs-1{
@@ -41,7 +51,7 @@ body {
     font-weight: bolder;
 }
 .cherish-img>img{
-    width: 70vw;
+    width: 60vw;
     border-radius: 50%;
 }
 
