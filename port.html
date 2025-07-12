@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Fira Code' rel='stylesheet'>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+            }
+
+            /* Track */
+            ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px gray; 
+            border-radius: 10px;
+            }
+            
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+            background: gray; 
+            border-radius: 10px;
+            }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+            background: #a79191; 
+            }
+
+
+        body{
+            font-family: 'Fira Code';
+            background-color: black;
+            color: wheat;
+        }
+        section{
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+            justify-content: space-around;
+        }
+        .nomh{
+            min-height: auto;
+        }
+        .left{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 50%;
+        }
+        .right{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .heading-1{
+            font-size: 3.2rem;
+            font-weight: 800;
+        }
+        .heading-1 > p {
+            text-shadow: 2px 3px 15px #637597;
+        }
+
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px;
+            text-align: center;
+            width: 120px;
+            transition: transform 0.2s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card.clicked {
+            background: #333;
+        }
+        .card.clicked_work {
+            background: #333;
+        }
+
+        .card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        .card span {
+            display: block;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .skill-card-container{
+            margin: 0;
+            background-color: #000;
+            font-family: 'Fira Code', monospace;
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+        .skill-card-container:not(:has(.clicked)){
+            min-height: auto;
+        }
+        .skill-card-container:has(.clicked){
+            transform: scale(0.5);
+            transition: transform 0.3s ease;
+        }
+        .skill-card-container:not(:has(.clicked_work)){
+            min-height: auto;
+        }
+        .skill-card-container:has(.clicked_work){
+            transform: scale(0.5);
+            transition: transform 0.3s ease;
+        }
+
+
+        .skill-description{
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px;
+            text-align: center;
+            width: 120px;
+            width: 95%;
+            min-height: 30%;
+            max-height: 42%;
+            overflow-y: scroll;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 1;
+            transform: scale(1);
+        }
+        .skill-description.d-none-tras{
+            /* display: none; */
+            opacity: 0;
+            height: 0;
+            transform: scale(0);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .wcc > .card {
+            width: 118px;
+        }
+
+        .ccard {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px;
+            text-align: center;
+            width: 250px;
+            height: 240px;
+            transition: transform 0.2s ease;
+        }
+        .ccard:hover {
+            transform: scale(1.05);
+        }
+
+        .ccard img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        .ccard span {
+            display: block;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        nav{
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+        }
+
+        nav a{
+            text-decoration: none;
+            color: wheat;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <!-- FIRST HOME -->
+    <section id="home"">
+        <div class="left">
+            <span class="heading-1"><p>👋 Hello, I'm <span class="highlight">CHERISH PATEL</span></p></span>
+            <span class="heading-2"><p id="typewriter_app"></p></span>
+            <span class="heading-2"><p><p>
+                I'm a <span class="highlight">25-year-old developer</span> with 
+                <span class="highlight">3.5 years of hands-on experience</span> crafting modern, efficient, and scalable web applications.
+                Passionate about clean code and creative problem-solving, I thrive at the intersection of design, development, and user experience.
+                </p></span>
+            
+        </div>
+        <div class="right">
+            <model-viewer camera-controls alt="Model" 
+                src="./char_model.glb" style="height: 50vh;"
+                camera-controls 
+                auto-rotate 
+                rotation-per-second="-30deg"
+            > </model-viewer>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="nomh" id="skills">
+        <div class="middle">
+            <h1 style="margin-top: 30px;text-align: center;">Tech Skill I have.. </h1>
+            <div class="skill-card-container mh-100">
+                <div class="card" onclick="skill_show(this, 'HTML / CSS / JS')">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
+                    <span>HTML/CSS/JS</span>
+                </div>
+                <div class="card" onclick="skill_show(this, 'React')">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
+                    <span>React</span>
+                </div>
+                <div class="card" onclick="skill_show(this, 'Python')">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+                    <span>Python</span>
+                </div>
+                <div class="card" onclick="skill_show(this, 'Django')">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.13.0/icons/django.svg" alt="Django" style="filter: invert(1);" />
+                    <span>Django</span>
+                </div>
+                <div class="card" onclick="skill_show(this, 'Automation / Scrapping')">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.13.0/icons/probot.svg" alt="Automation" style="filter: invert(1);" />
+                    <span>Automation</span>
+                </div>
+            </div>
+
+            <div class="skill-description d-none-tras">
+                <h2 class="skill_name"></h2>
+                <div class="skill_description"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+     <section id="portfolio" class="nomh">
+        <div class="middle">
+            <h1 style="margin-top: 30px;text-align: center;">Work I Have Done.. </h1>
+            <div class="skill-card-container wcc mh-100">
+                <div class="card" onclick="work_show(this, 'Open Shayri')">
+                    <img src="./img/shayri.jpeg" alt="Shayri"  style="filter: invert(1); border-radius: 14px;"/>
+                    <span>Open Shayri</span>
+                </div>
+                <div class="card" onclick="work_show(this, 'Farm Bot')">
+                    <img src="./img/farmbot.png" alt="Farm Bot" />
+                    <span>Farm Bot</span>
+                </div>
+                <div class="card" onclick="work_show(this, 'Market Forecast')">
+                    <img src="./img/market.png" alt="Market Forecast" />
+                    <span>Market Forecast</span>
+                </div>
+                <div class="card" onclick="work_show(this, 'CSV Anylysis')">
+                    <img src="./img/csva.avif" alt="CSV Anylysis" />
+                    <span>CSV Anylysis</span>
+                </div>
+                <div class="card" onclick="work_show(this, 'Bill Maker')">
+                    <img src="./img/bill.png" alt="Bill Maker" />
+                    <span>Bill Maker</span>
+                </div>
+                <div class="card" onclick="work_show(this, 'Product Watch')">
+                    <img src="./img/product.png" alt="Product Watch" />
+                    <span>Product Watch</span>
+                </div>
+                <div class="card" onclick="work_show(this, 'GitHub')">
+                    <img src="./img/github.png" alt="GitHub" />
+                    <span>GitHub</span>
+                </div>
+                
+            </div>
+
+            <div class="skill-description d-none-tras" id="work_description_count">
+                <h2 class="skill_name"  id="work_name"></h2>
+                <div class="skill_description"  id="work_discription"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section (Info Only) -->
+    <section id="contact" class="cus">
+        <div class="middle">
+            <h1 style="margin-top: 30px;text-align: center;">Contact Me </h1>
+            <div class="skill-card-container wcc mh-100">
+                <div class="ccard">
+                    <i class="fa-solid fa-phone" style="font-size: 3.5rem;margin-bottom: 15px;"></i>
+                    <span>Call Me</span>
+                    <p>
+                        <a href="tel:+918200314290" target="_blank" style="color: wheat; text-decoration: none;">+91 82003 14290</a>
+                    </p>
+                    <p>I'll help you to find best solution for your need.</p>
+                </div>
+                <div class="ccard">
+                    <i class="fa-solid fa-envelope" style="font-size: 3.5rem;margin-bottom: 15px;"></i>
+                    <span>Mail Me</span>
+                    <p>
+                        <a href="mailto:cherishpatel2001@gmail.com" target="_blank" style="color: wheat; text-decoration: none;">cherishpatel2001@gmail.com</a>
+                    </p>
+                    <p>Get in touch — I’ll work with you to find the best approach for your goals.</p>
+                </div>
+                <div class="ccard">
+                    <i class="fa-brands fa-linkedin" style="font-size: 3.5rem;margin-bottom: 15px;"></i>
+                    <span>Linkedin</span>
+                    <p>
+                        <a href="https://www.linkedin.com/in/cherish-patel-834233374/" target="_blank" style="color: wheat; text-decoration: none;">cherish-patel-834233374</a>
+                    </p>
+                    <p>Get in touch with linkedin.</p>
+                </div>
+                <div class="ccard">
+                    <i class="fa-solid fa-file" style="font-size: 3.5rem;margin-bottom: 15px;"></i>
+                    <span>Resume</span>
+                    <p>
+                        <a href="./cherish_patel_2025.pdf" target="_blank" style="color: wheat; text-decoration: none;">cherish-patel-834233374</a>
+                    </p>
+                    <p>Take A look at my CV.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <script>
+        var app = document.getElementById('typewriter_app');
+
+        var typewriter = new Typewriter(app, {
+        // loop: true,
+        delay: 55,
+        cursor:"_"
+
+        });
+
+        typewriter
+        .typeString(`Python Developer | Backend Developer`)
+        .start();
+
+        function skill_show(elem, skill_name){
+            clicked_cards = document.getElementsByClassName('clicked')[0]
+            if (clicked_cards != elem) clicked_cards?.classList?.remove('clicked')
+            elem.classList.toggle('clicked');
+            disc_cont = document.getElementsByClassName('skill-description')[0]
+            disc_cont.classList.toggle('d-none-tras', !elem.classList.contains('clicked'));
+
+            skill_name_elem = document.getElementsByClassName('skill_name')[0]
+            skill_name_elem.innerText = skill_name
+            skill_description_elem = document.getElementsByClassName('skill_description')[0]
+            skill_description_elem.innerHTML = fill_desc(skill_name)
+        }
+
+        function fill_desc(skill_name){
+            if (skill_name == "HTML / CSS / JS"){
+                return `
+                <h3>HTML</h3>
+                <p>Writing clean, semantic, and accessible markup to build well-structured, SEO-friendly websites.</p>
+                <hr>
+                <h3>CSS</h3>
+                <p>Creating responsive layouts using Flexbox and Grid, with custom styling, animations, and transitions to enhance UI/UX.</p>  
+                <hr>
+                <h3>JavaScript</h3>
+                <p>Adding dynamic interactivity through DOM manipulation, event handling, and client-side logic for smooth user experiences.</p>
+                `
+            }
+            if (skill_name == "React"){
+                return `
+                <h3>React.js</h3>
+                <p>I have a basic understanding of React, including components, props, state, and hooks. I can create interactive user interfaces and manage component-based architectures.</p>
+                <hr>
+                <h3>Next.js</h3>
+                <p>I am familiar with the basics of Next.js, including routing, pages, and static site generation. I can build simple, fast-loading web applications using this framework.</p> 
+                `
+            }
+            if (skill_name == "Python"){
+                return `
+                <p>
+                    I specialize in Python-based development with a strong foundation in backend frameworks like 
+                    <strong>Django</strong>, <strong>Flask</strong>, and <strong>FastAPI</strong>. My expertise extends to 
+                    <strong>web scraping</strong>, <strong>automation</strong>, and efficient 
+                    <strong>data processing and visualization</strong>. I also work with 
+                    <strong>LLM models</strong> and build <strong>RAG-based interactions</strong> to integrate 
+                    intelligent, context-aware solutions.
+                </p>
+                `
+            }
+            if (skill_name == "Django"){
+                return `
+                <p>
+                    I have extensive experience in building <strong>full-stack web applications</strong> using 
+                    <strong>Django</strong> for both frontend and backend development. I specialize in creating 
+                    robust backends with the <strong>Django REST Framework</strong>, handling projects with varying 
+                    levels of <strong>complexity</strong>, <strong>security</strong>, and 
+                    <strong>feature-rich functionality</strong> tailored to real-world needs.
+                </p>
+                `
+            }
+            if (skill_name == "Automation / Scrapping"){
+                return `
+                <p>
+                    I have hands-on experience in extracting data from a wide range of 
+                    <strong>complex websites</strong> and automating browser tasks. I use tools like 
+                    <strong>BeautifulSoup</strong> and <strong>Selenium</strong> to build robust web scrapers 
+                    and automation scripts that can <strong>interact with dynamic websites</strong>, handle 
+                    <strong>form submissions</strong>, <strong>click events</strong>, and more.
+                </p>
+                `
+            }
+            
+        }
+
+        function work_show(elem, work_name){
+            clicked_cards = document.getElementsByClassName('clicked_work')[0]
+            if (clicked_cards != elem) clicked_cards?.classList?.remove('clicked_work')
+            elem.classList.toggle('clicked_work');
+            disc_cont = document.getElementById('work_description_count')
+            disc_cont.classList.toggle('d-none-tras', !elem.classList.contains('clicked_work'));
+
+            skill_name_elem = document.getElementById('work_name')
+            skill_name_elem.innerText = work_name
+            skill_description_elem = document.getElementById('work_discription')
+            skill_description_elem.innerHTML = fill_desc_work(work_name)
+        }
+
+        function fill_desc_work(skill_name){
+            if (skill_name == "Open Shayri"){
+                return `
+                <h3>Open Shayri</h3>
+                <p>A Python-based Streamlit web application that allows users to write and share shayaries anonymously.</p>
+                <hr>
+                <h4>Tech Stack</h4>
+                <ul>
+                <li>Python</li>
+                <li>Streamlit</li>
+                </ul>
+                <hr>
+                <h4>Live Demo</h4>
+                <a href="https://openshayri-0471.streamlit.app/" target="_blank">Visit Open Shayri</a>
+                `
+            }
+            if (skill_name == "Farm Bot"){
+                return `
+                <h3>Farm Bot</h3>
+                    <p>A Python-based Streamlit chatbot application that helps farmers ask questions and get instant support for their queries.</p>
+                    <hr>
+                    <h4>Tech Stack</h4>
+                    <ul>
+                    <li>Python</li>
+                    <li>Streamlit</li>
+                    <li>Generative AI</li>
+                    </ul>
+                    <hr>
+                    <h4>Live Demo</h4>
+                    <a href="https://farmbot-0471.streamlit.app/" target="_blank">Visit Farm Bot</a>
+                `
+            }
+            if (skill_name == "Market Forecast"){
+                return `
+                <h3>Market Flow Forecast</h3>
+                <p>A Python-based Streamlit web app that gathers financial news and uses Generative AI to forecast stock market trends.</p>
+                <hr>
+                <h4>Tech Stack</h4>
+                <ul>
+                <li>Python</li>
+                <li>Streamlit</li>
+                <li>Generative AI</li>
+                <li>Web Scraping</li>
+                </ul>
+                <hr>
+                <h4>Live Demo</h4>
+                <a href="https://marketflowforecast-dlro53tjpjmachfdstmttt.streamlit.app/" target="_blank">Visit Market Flow Forecast</a>
+                `
+            }
+            if (skill_name == "CSV Anylysis"){
+                return `
+                <h3>CSV Analysis</h3>
+                <p>A Python-based Streamlit web app that allows users to upload CSV files and instantly generate visualizations (bar and line charts) along with insights.</p>
+                <hr>
+                <h4>Tech Stack</h4>
+                <ul>
+                <li>Python</li>
+                <li>Streamlit</li>
+                <li>Pandas</li>
+                </ul>
+                <hr>
+                <h4>Live Demo</h4>
+                <a href="https://csvanylyze-0471.streamlit.app/" target="_blank">Visit CSV Analysis</a>
+
+                `
+            }
+            if (skill_name == "Bill Maker"){
+                return `
+                <h3>Bill Maker</h3>
+                <p>A Django and Next.js web application that allows users to register, log in, and easily create, update, and delete clients and bills.</p>
+                <hr>
+                <h4>Tech Stack</h4>
+                <ul>
+                <li>Python</li>
+                <li>Django REST Framework</li>
+                <li>Next.js</li>
+                </ul>
+                <hr>
+                <h4>GitHub Repositories</h4>
+                <p>Backend: <a href="https://github.com/crs0471/bill-backend" target="_blank">View on GitHub</a></p>
+                <p>Frontend: <a href="https://github.com/crs0471/bill-front" target="_blank">View on GitHub</a></p>
+                `
+            }
+            if (skill_name == "Product Watch"){
+                return `
+                <h3>Product Watch</h3>
+                <p>A Django full-stack application that allows users to add Amazon product links to a watchlist, automatically scrape prices using a scheduled cron job, and analyze price trends in a dashboard with charts.</p>
+                <hr>
+                <h4>Tech Stack</h4>
+                <ul>
+                <li>Python</li>
+                <li>Django</li>
+                <li>Beautiful Soup</li>
+                </ul>
+                <hr>
+                <h4>GitHub Repository</h4>
+                <a href="https://github.com/crs0471/ProductWtach/tree/master" target="_blank">View on GitHub</a>
+                `
+            }
+            if (skill_name == "GitHub"){
+                return `
+                <h3>Find More Work on GitHub Repository</h3>
+                <a href="https://github.com/crs0471?tab=repositories" target="_blank">View on GitHub</a>
+                `
+            }
+            
+        }
+
+    </script>
+    
+</body>
+</html>
