@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherish Patel</title>
+    <link rel="icon" type="image/x-icon" href="./fev.png">
+    <link href='https://fonts.googleapis.com/css?family=Fira Code' rel='stylesheet'>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+            }
+
+            /* Track */
+            ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px gray; 
+            border-radius: 10px;
+            }
+            
+            /* Handle */
+            ::-webkit-scrollbar-thumb {
+            background: gray; 
+            border-radius: 10px;
+            }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+            background: #a79191; 
+            }
+
+
+        body{
+            font-family: 'Fira Code';
+            background-color: black;
+            color: wheat;
+        }
+        section{
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+            justify-content: space-around;
+        }
+        .nomh{
+            min-height: auto;
+        }
+        .left{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 50%;
+        }
+        .right{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .heading-1{
+            font-size: 3.2rem;
+            font-weight: 800;
+        }
+        .heading-1 > p {
+            text-shadow: 2px 3px 15px #637597;
+        }
+
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px;
+            text-align: center;
+            width: 120px;
+            transition: transform 0.2s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card.clicked {
+            background: #333;
+        }
+        .card.clicked_work {
+            background: #333;
+        }
+
+        .card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        .card span {
+            display: block;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .skill-card-container{
+            margin: 0;
+            background-color: #000;
+            font-family: 'Fira Code', monospace;
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+        .skill-card-container:not(:has(.clicked)){
+            min-height: auto;
+        }
+        .skill-card-container:has(.clicked){
+            transform: scale(0.5);
+            transition: transform 0.3s ease;
+        }
+        .skill-card-container:not(:has(.clicked_work)){
+            min-height: auto;
+        }
+        .skill-card-container:has(.clicked_work){
+            transform: scale(0.5);
+            transition: transform 0.3s ease;
+        }
+
+
+        .skill-description{
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px;
+            text-align: center;
+            width: 120px;
+            width: 95%;
+            min-height: 30%;
+            max-height: 42%;
+            overflow-y: scroll;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 1;
+            transform: scale(1);
+        }
+        .skill-description.d-none-tras{
+            /* display: none; */
+            opacity: 0;
+            height: 0;
+            transform: scale(0);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .wcc > .card {
+            width: 118px;
+        }
+
+        .ccard {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            /* padding: 20px; */
+            margin: 15px;
+            text-align: center;
+            width: 250px;
+            height: 250px;
+            transition: transform 0.2s ease;
+        }
+        .ccard:hover {
+            transform: scale(1.05);
+        }
+
+        .ccard img {
+            width: 100%;
+            height: 150px;
+            object-fit: fill;
+            margin-bottom: 10px;
+            border-radius: 12px;
+
+        }
+        .ccard span {
+            display: block;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        nav{
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding-top: 10px;
+        }
+
+        nav a{
+            text-decoration: none;
+            color: wheat;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        nav a.active, nav a:hover{
+            color: #fff;
+            font-style: italic;
+            text-decoration: underline;
+        }
+        .muted{
+            color: #ccc;
+            font-size: .8rem;
+            margin-top: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/16.1.1/lib/marked.esm.js" integrity="sha512-r0e7LRhCi/0TOoQVlpTKCAt8QscxOPstYLlVP2VnKG8ZLw30JNeI3XfHtfY82qIsT6WXdnmu/5kBsk6S93WGow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#portfolio">Portfolio</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="./blogs/index.html" class="active">Blogs</a>
+
+    </nav>
+
+    <!-- Contact Us Section (Info Only) -->
+    <section id="contact" class="cus" style="margin-top: 30px;">
+        <div class="middle" >
+            <div class="skill-card-container wcc mh-100">
+                <div class="ccard" onclick="location.href='./career_in_coding_guide.html'">
+                    <img src="./imgs/career_in_coding_guide/mind_map.png" alt="">
+                    <h4 style="margin-bottom: 4px;margin-top: 10px;">Career in Coding Guide</h4>
+                    <p class="muted">How To dive in coding world.</p>
+                </div>
+                
+            </div>
+
+        </div>
+    </section>
+
+
+    
+</body>
+</html>
